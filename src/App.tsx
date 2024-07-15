@@ -25,8 +25,11 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const handleDelete = (index: number) => {
-    dispatch(deleteUser(index));
+  if (error) {
+    return <div>Error</div>;
+  }
+  const handleDelete = () => {
+    dispatch(deleteUser(userid));
   };
 
   return (
@@ -78,7 +81,7 @@ function App() {
                   <td className="flex gap-4 px-6 py-4 border border-b-0 border-gray-100 ">
                     <button className="text-blue-500 inline-block">
                       {/* <img src={EditIcon} alt="editIcon" /> */}
-                      <Link className=" inline-block" to={"/edit"}>
+                      <Link className=" inline-block" to="/edit">
                         Edit
                       </Link>
                     </button>

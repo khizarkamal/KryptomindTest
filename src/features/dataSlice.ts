@@ -17,7 +17,6 @@ const initialState: DataState = {
 // Async thunk to fetch data
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
   const response = await axios.get("https://randomuser.me/api/?results=10");
-  console.log("Response---", response);
   return response.data;
 });
 
@@ -25,10 +24,10 @@ const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    deleteUser: (state, action: PayloadAction<number>) => {
-      state.data = state.data?.results?.filter(
-        (_, index) => index !== action.payload
-      );
+    deleteUser: (state, action) => {
+      state.data.results = state?.data?.results?.filter((item: any) => {
+        return item?.login?.uuid !== action?.payload;
+      });
     },
   },
   extraReducers: (builder) => {

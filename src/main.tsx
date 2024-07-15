@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./store.ts";
@@ -12,10 +12,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Router>
       <Provider store={store}>
         <Routes>
+          <Route path="/edit" element={<EditUser />} />
           <Route path="/" element={<App />} />
-          <Route path="edit" element={<EditUser />} />
         </Routes>
-        <App />
       </Provider>
     </Router>
   </React.StrictMode>
